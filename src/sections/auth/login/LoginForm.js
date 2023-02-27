@@ -22,9 +22,11 @@ export default function LoginForm() {
   const [errorLogin, setErrorLogin] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     try {
       const authData = await pb.admins.authWithPassword(email, password);
+      localStorage.setItem('farm-admin', authData.token);
       navigate('/dashboard', { replace: true });
     } catch (e) {
       setErrorLogin(true);

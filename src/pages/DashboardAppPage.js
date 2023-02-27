@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
@@ -22,6 +24,13 @@ import {
 
 export default function DashboardAppPage() {
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('farm-admin')) {
+      navigate('/login', { replace: true });
+    }
+  }, [navigate]);
 
   return (
     <>

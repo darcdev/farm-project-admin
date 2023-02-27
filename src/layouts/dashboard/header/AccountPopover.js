@@ -35,6 +35,7 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+    localStorage.removeItem('farm-admin');
     navigate('/login', { replace: true });
   };
 
